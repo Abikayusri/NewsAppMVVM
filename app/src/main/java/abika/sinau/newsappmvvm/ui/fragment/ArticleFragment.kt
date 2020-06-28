@@ -1,6 +1,10 @@
 package abika.sinau.newsappmvvm.ui.fragment
 
 import abika.sinau.newsappmvvm.R
+import abika.sinau.newsappmvvm.ui.NewsActivity
+import abika.sinau.newsappmvvm.ui.NewsViewModel
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 
 /**
@@ -9,4 +13,11 @@ import androidx.fragment.app.Fragment
  * Bismillahirrahmanirrahim
  */
 class ArticleFragment : Fragment(R.layout.fragment_article) {
+
+    lateinit var viewModel: NewsViewModel
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as NewsActivity).viewModel
+    }
 }
