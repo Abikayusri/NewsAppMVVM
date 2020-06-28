@@ -1,9 +1,6 @@
 package abika.sinau.newsappmvvm.model
 
-import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
-
-@Entity
 
 data class NewsResponse(
 

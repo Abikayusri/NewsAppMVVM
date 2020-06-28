@@ -1,8 +1,17 @@
 package abika.sinau.newsappmvvm.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(
+	tableName = "articles"
+)
+
 data class ArticlesItem(
+
+	@PrimaryKey(autoGenerate = true)
+	var id: Int? = null,
 
 	@field:SerializedName("publishedAt")
 	val publishedAt: String? = null,
