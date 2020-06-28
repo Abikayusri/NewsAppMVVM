@@ -1,5 +1,5 @@
 package abika.sinau.newsappmvvm.repository
-
+import abika.sinau.newsappmvvm.api.RetrofitInstance
 import abika.sinau.newsappmvvm.db.ArticleDatabase
 
 /**
@@ -8,5 +8,6 @@ import abika.sinau.newsappmvvm.db.ArticleDatabase
  * Bismillahirrahmanirrahim
  */
 class NewsRepository (val db: ArticleDatabase) {
-
+    suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
+        RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)
 }
