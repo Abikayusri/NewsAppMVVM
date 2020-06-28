@@ -18,9 +18,8 @@ import kotlinx.android.synthetic.main.item_article_preview.view.*
  * Bismillahirrahmanirrahim
  */
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
-    inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    }
+    inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     private val differCallback = object : DiffUtil.ItemCallback<ArticlesItem>() {
         override fun areItemsTheSame(oldItem: ArticlesItem, newItem: ArticlesItem): Boolean {
@@ -36,14 +35,19 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         return ArticleViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_article_preview, parent, false)
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_article_preview,
+                parent,
+                false
+            )
         )
     }
 
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
+
+    private var onItemClickListener: ((ArticlesItem) -> Unit)? = null
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
@@ -55,16 +59,13 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             tvPublishedAt.text = article.publishedAt
 
             setOnClickListener {
-                onItemClickListener?.let {
-                    it(article)
-                }
+                onItemClickListener?.let { it(article) }
             }
         }
     }
 
-    private var onItemClickListener: ((ArticlesItem) -> Unit)? = null
-
-    fun setOnItemClickListener(listener: (ArticlesItem) -> Unit){
+    fun setOnItemClickListener(listener: (ArticlesItem) -> Unit) {
         onItemClickListener = listener
     }
+
 }
