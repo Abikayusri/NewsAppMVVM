@@ -4,12 +4,13 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+// TODO 4-1: anotate class dengan entity
 @Entity(
 	tableName = "articles"
 )
 
 data class ArticlesItem(
-
+	// TODO 4-2: tambahkan primary key, buat dengan autoGenerate agar primary key bertambah secara otomatis
 	@PrimaryKey(autoGenerate = true)
 	var id: Int? = null,
 
