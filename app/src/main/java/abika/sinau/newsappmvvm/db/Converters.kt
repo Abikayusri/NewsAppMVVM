@@ -8,8 +8,11 @@ import androidx.room.TypeConverter
  * on Sunday, 28 June 2020
  * Bismillahirrahmanirrahim
  */
+
+// TODO 5-5: Buat sebuah class converter yang berfungsi untuk mengconvert data yang berisikan object/link
 class Converters {
 
+    // gunakan anotasi typeConverter
     @TypeConverter
     fun fromSource(source: Source): String {
         return source.name
