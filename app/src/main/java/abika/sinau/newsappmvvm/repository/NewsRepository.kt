@@ -1,4 +1,5 @@
 package abika.sinau.newsappmvvm.repository
+
 import abika.sinau.newsappmvvm.api.RetrofitInstance
 import abika.sinau.newsappmvvm.db.ArticleDatabase
 
@@ -8,8 +9,13 @@ import abika.sinau.newsappmvvm.db.ArticleDatabase
  * Bismillahirrahmanirrahim
  */
 // TODO 7-2: Buat sebuah class repository yang digunakan untuk mensetting bagian API
-class NewsRepository (val db: ArticleDatabase) {
+class NewsRepository(val db: ArticleDatabase) {
     // TODO 8-1: Buat sebuah function yang digunakan untuk mendapatkan API dari BreakingNews
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
         RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)
+
+    // TODO 9-1: Buat sebuah function search
+    suspend fun searchNews(searchQuery: String, pageNumber: Int) =
+        RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
+
 }
