@@ -13,9 +13,10 @@ import androidx.fragment.app.Fragment
  * Bismillahirrahmanirrahim
  */
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
-
+    // TODO 7-10: Inisialisasi viewModel
     lateinit var viewModel: NewsViewModel
 
+    // TODO 7-11: Buat function untuk memanggilnya
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).viewModel

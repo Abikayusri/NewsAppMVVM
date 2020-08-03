@@ -21,13 +21,17 @@ import kotlinx.android.synthetic.main.fragment_breaking_news.*
  */
 
 class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
+
+    // TODO 7-7: inisialisasi viewModel terlebih dahulu
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
 
     val TAG = "BreakingNewsFragment"
 
+    // TODO 7-6: Buat sebuah function untuk memanggil ViewModel di Fragment ini
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // copy bagian ini pastekan di SavedNewsFragment
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
 

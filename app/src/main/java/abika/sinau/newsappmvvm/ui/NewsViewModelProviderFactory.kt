@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
  * on Sunday, 28 June 2020
  * Bismillahirrahmanirrahim
  */
+// TODO 7-3: Buat sebuah viewModelProviderFactory yang digunakan mendefine newsRepository yang nantinya akan dipanggil di viewModel
 class NewsViewModelProviderFactory (
     val newsRepository: NewsRepository
 ) : ViewModelProvider.Factory {
