@@ -8,9 +8,9 @@ import abika.sinau.newsappmvvm.util.Constants
 import abika.sinau.newsappmvvm.util.Constants.Companion.SEARCH_NEWS_TIME_DELAY
 import abika.sinau.newsappmvvm.util.Resource
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AbsListView
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -92,7 +92,10 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e(TAG, "An Error occured: $message")
+//                        Log.e(TAG, "An Error occured: $message")
+                        // TODO 12-16: Ganti dengan toast
+                        Toast.makeText(activity, "An Error occured : $message", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
                 is Resource.Loading -> {
