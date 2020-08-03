@@ -3,6 +3,7 @@ package abika.sinau.newsappmvvm.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 // TODO 4-1: anotate class dengan entity
 @Entity(
@@ -37,4 +38,5 @@ data class ArticlesItem(
 
 	@field:SerializedName("content")
 	val content: String? = null
-)
+)// TODO 10-1: Tambahkan Serilizable
+	: Serializable

@@ -19,7 +19,12 @@
     <fragment
         android:id="@+id/articleFragment"
         android:name="abika.sinau.newsappmvvm.ui.fragment.ArticleFragment"
-        android:label="ArticleFragment" />
+        android:label="ArticleFragment" >
+        <!-- TODO 10-2: Tambahkan Arguments dengan serilizable -->
+        <argument
+            android:name="article"
+            app:argType="abika.sinau.newsappmvvm.model.ArticlesItem" />
+    </fragment>
     <fragment
         android:id="@+id/savedNewsFragment"
         android:name="abika.sinau.newsappmvvm.ui.fragment.SavedNewsFragment"

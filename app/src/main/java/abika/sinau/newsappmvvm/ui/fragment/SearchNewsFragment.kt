@@ -12,10 +12,9 @@ import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_breaking_news.*
 import kotlinx.android.synthetic.main.fragment_search_news.*
-import kotlinx.android.synthetic.main.fragment_search_news.paginationProgressBar
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -41,17 +40,28 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         // TODO 9-8: Panggil functionnya+
         setupRecyclerView()
 
+        // TODO 10-4: Tambahkan onClickListener pada Adapter
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply { // bundle digunakan sebagai pengganti intent
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_searchNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
+
         // TODO 9-9: Untuk menambahkan delay ketika menampilkan data kita bisa menggunakan function
         //  yang terdapat pada coroutine
-        var job: Job ?= null
-        etSearch.addTextChangedListener {editable ->
+        var job: Job? = null
+        etSearch.addTextChangedListener { editable ->
             job?.cancel()
             job = MainScope().launch {
                 delay(SEARCH_NEWS_TIME_DELAY)
                 editable?.let {
-                   if (editable.toString().isNotEmpty()) {
-                       viewModel.searchNews(editable.toString())
-                   }
+                    if (editable.toString().isNotEmpty()) {
+                        viewModel.searchNews(editable.toString())
+                    }
                 }
             }
         }

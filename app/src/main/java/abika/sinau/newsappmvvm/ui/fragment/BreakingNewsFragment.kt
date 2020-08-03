@@ -5,12 +5,12 @@ import abika.sinau.newsappmvvm.adapters.NewsAdapter
 import abika.sinau.newsappmvvm.ui.NewsActivity
 import abika.sinau.newsappmvvm.ui.NewsViewModel
 import abika.sinau.newsappmvvm.util.Resource
-import android.graphics.LinearGradient
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_breaking_news.*
 
@@ -37,9 +37,20 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         // TODO 8-6: panggil functionnya di sini
         setupRecyclerView()
 
+        // TODO 10-3: Tambahkan onClickListener pada Adapter
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply { // bundle digunakan sebagai pengganti intent
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_breakingNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
+
         // TODO 8-7: untuk memanggil breaking news live data kita perlu memanggil observe
-        viewModel.breakingNews.observe(viewLifecycleOwner, Observer {response ->
-            when(response) {
+        viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
+            when (response) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
