@@ -35,7 +35,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
         // TODO 10-5: Tambahkan onClickListener pada Adapter
         newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply { // bundle digunakan sebagai pengganti intent
+            val bundle = Bundle().apply { // bundle digunakan sebagai pengganti intents
                 putSerializable("article", it)
             }
             findNavController().navigate(
