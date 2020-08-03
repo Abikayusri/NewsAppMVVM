@@ -2,6 +2,7 @@ package abika.sinau.newsappmvvm.repository
 
 import abika.sinau.newsappmvvm.api.RetrofitInstance
 import abika.sinau.newsappmvvm.db.ArticleDatabase
+import abika.sinau.newsappmvvm.model.ArticlesItem
 
 /**
  * Created by Abika Chairul Yusri
@@ -18,4 +19,12 @@ class NewsRepository(val db: ArticleDatabase) {
     suspend fun searchNews(searchQuery: String, pageNumber: Int) =
         RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
 
+    // TODO 11-1: Buat sebuah function save
+    suspend fun upsert(article: ArticlesItem) = db.getArticleDao().upsert(article)
+
+    // TODO 11-1:
+    fun getSavedNews() = db.getArticleDao().getAllArticles()
+
+    // TODO 11-1:
+    suspend fun deleteArticle(article: ArticlesItem) = db.getArticleDao().deleteArticle(article)
 }

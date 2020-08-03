@@ -1,5 +1,6 @@
 package abika.sinau.newsappmvvm.ui
 
+import abika.sinau.newsappmvvm.model.ArticlesItem
 import abika.sinau.newsappmvvm.model.NewsResponse
 import abika.sinau.newsappmvvm.repository.NewsRepository
 import androidx.lifecycle.MutableLiveData
@@ -70,5 +71,17 @@ class NewsViewModel(
             }
         }
         return Resource.Error(response.message())
+    }
+
+    // TODO 11-2: buat sebuah response function yang berfungsi untuk memberikan response untuk save data
+    fun saveArticle(articlesItem: ArticlesItem) = viewModelScope.launch {
+        newsRepository.upsert(articlesItem)
+    }
+
+    // tidak memerlukan viewModelScope karena tidak menggunakan suspend function
+    fun getSavedNews() = newsRepository.getSavedNews()
+
+    fun deleteArticle(articlesItem: ArticlesItem) = viewModelScope.launch {
+        newsRepository.deleteArticle(articlesItem)
     }
 }
