@@ -33,8 +33,11 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         super.onViewCreated(view, savedInstanceState)
         // copy bagian ini pastekan di SavedNewsFragment
         viewModel = (activity as NewsActivity).viewModel
+
+        // TODO 8-6: panggil functionnya di sini
         setupRecyclerView()
 
+        // TODO 8-7: untuk memanggil breaking news live data kita perlu memanggil observe
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer {response ->
             when(response) {
                 is Resource.Success -> {
@@ -57,6 +60,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         })
     }
 
+    // TODO 8-5: Buat sebuah function untuk menset newsAdapter
     private fun setupRecyclerView() {
         newsAdapter = NewsAdapter()
         rvBreakingNews.apply {
@@ -65,10 +69,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         }
     }
 
+    // TODO 8-8: buat sebuah function untuk progress bar
     private fun hideProgressBar() {
         paginationProgressBar.visibility = View.GONE
     }
 
+    // TODO 8-8: buat sebuah function untuk progress bar
     private fun showProgressBar() {
         paginationProgressBar.visibility = View.VISIBLE
     }

@@ -19,13 +19,20 @@ class NewsViewModel(
     val newsRepository: NewsRepository
 ) : ViewModel() {
 
+    // TODO 8-2: buat sebuah liveDataObject
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    val breakingNewsPage = 1
+    val breakingNewsPage = 1 // karena kita akan memanage halaman di viewModel. jika kita menaruhnya
+    // di fragment halaman terkini akan selalu direset ketika kita merotasi device dan viewModel
+    // tidak akan hancur kita merotasinya. Saat ini kita deklarasikan pagenya = 1, nanti kita akan
+    // implementasikan beberapa logic yang akan meresponse kita
 
+    // TODO 8-9: karena kita belum memanggil function getBreakingNews, kita perlu inisialisasi di sini
     init {
         getBreakingNews("us")
     }
 
+    // TODO 8-3: implement function kita. dikarenakan repository menggunakan suspend function dari
+    //  coroutine yang akan dijalankan di fragment dan kita tidak mengiginkan hal itu. karenanya kita panggil di sini
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {
         breakingNews.postValue(Resource.Loading())
 
@@ -33,6 +40,7 @@ class NewsViewModel(
         breakingNews.postValue(handleBreakingNewsResponse(response))
     }
 
+    // TODO 8-4: buat sebuah response function yang berfungsi untuk memberikan response ketika response success maupun error
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let {
